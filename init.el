@@ -1,5 +1,6 @@
-;; Requisites: Emacs >= 24
+;;; Requisites: Emacs >= 24
 (require 'package)
+;;; code:
 (package-initialize)
 
 ;; (add-to-list 'package-archives
