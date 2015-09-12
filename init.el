@@ -14,7 +14,7 @@
 
 ;; ;; make more packages available with the package installer
 ;; (setq to-install
-;;       '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck))
+;;       '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck pony-mode))
 
 ;; (mapc 'install-if-needed to-install)
 
@@ -25,6 +25,7 @@
 (require 'autopair)
 (require 'yasnippet)
 (require 'flycheck)
+(require 'pony-mode)
 (global-flycheck-mode t)
 
 (global-set-key [f7] 'find-file-in-repository)
