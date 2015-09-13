@@ -14,13 +14,15 @@
 
 ;; ;; make more packages available with the package installer
 ;; (setq to-install
-;;       '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck pony-mode))
+;;       '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck helm xcscope helm-cscope))
 
 ;; (mapc 'install-if-needed to-install)
 
 (require 'magit)
 (global-set-key "\C-xg" 'magit-status)
 
+(require 'xcscope)
+(require 'helm-cscope)
 (require 'auto-complete)
 (require 'autopair)
 (require 'yasnippet)
