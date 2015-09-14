@@ -180,6 +180,7 @@
 (setq web-mode-enable-current-column-highlight t)
 
 (load-theme 'zenburn t)
+(setq-default tab-width 4)
 
 (provide '.emacs)
 ;;; .emacs ends here
