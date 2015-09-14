@@ -14,7 +14,7 @@
 
 ;; ;; make more packages available with the package installer
 ;; (setq to-install
-;;       '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode))
+;;       '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode projectile helm-projectile))
 
 ;; (mapc 'install-if-needed to-install)
 
@@ -161,5 +161,9 @@
       helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
       helm-ff-file-name-history-use-recentf t)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x f") 'helm-projectile-find-file)
 
 (helm-mode 1)
+
+(projectile-global-mode)
+(setq projectile-enable-caching t)
