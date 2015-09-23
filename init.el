@@ -14,7 +14,7 @@
 
 ;; ;; make more packages available with the package installer
 ;; (setq to-install
-;;       '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode projectile helm-projectile web-mode zenburn-theme))
+;;       '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode projectile helm-projectile web-mode zenburn-theme which-key))
 
 ;; (mapc 'install-if-needed to-install)
 
@@ -181,6 +181,11 @@
 
 (load-theme 'zenburn t)
 (setq-default tab-width 4)
+
+(require 'which-key)
+(setq which-key-use-C-h-for-paging t
+      which-key-prevent-C-h-from-cycling t)
+(which-key-setup-side-window-right)
 
 (provide '.emacs)
 ;;; .emacs ends here
