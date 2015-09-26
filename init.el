@@ -186,6 +186,7 @@
 (setq which-key-use-C-h-for-paging t
       which-key-prevent-C-h-from-cycling t)
 (which-key-setup-side-window-right)
+(which-key-mode t)
 
 ;; ------------------ helm-swoop ------------------
 
