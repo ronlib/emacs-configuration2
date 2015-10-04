@@ -180,7 +180,7 @@
 (setq web-mode-enable-current-column-highlight t)
 
 (load-theme 'zenburn t)
-(setq-default tab-width 4)
+(setq-default tab-width 2)
 
 (require 'which-key)
 (setq which-key-use-C-h-for-paging t
