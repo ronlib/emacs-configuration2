@@ -20,9 +20,6 @@
 
 (desktop-save-mode 1)
 
-(require 'magit)
-(global-set-key "\C-xg" 'magit-status)
-
 (require 'xcscope)
 (require 'helm-cscope)
 (require 'auto-complete)
@@ -83,6 +80,7 @@
 
 (require 'magit)
 (global-set-key "\C-xg" 'magit-status)
+(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
 
 (require 'auto-complete)
 (require 'autopair)
