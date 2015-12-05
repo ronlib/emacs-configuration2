@@ -18,6 +18,8 @@
 
 ;; (mapc 'install-if-needed to-install)
 
+(desktop-save-mode 1)
+
 (require 'magit)
 (global-set-key "\C-xg" 'magit-status)
 
