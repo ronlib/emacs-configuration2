@@ -86,7 +86,7 @@
 (show-paren-mode t)
  ; Turn beep off
 (setq visible-bell nil)
-
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 
 (require 'magit)
