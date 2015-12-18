@@ -3,6 +3,9 @@
 ;;; code:
 (package-initialize)
 
+(let ((default-directory  "~/.emacs.d/elisp/"))
+  (normal-top-level-add-subdirs-to-load-path))
+
 ;; (add-to-list 'package-archives
 ;; 	     '("melpa" . "http://melpa.milkbox.net/packages/"))
 
@@ -14,11 +17,19 @@
 
 ;; ;; make more packages available with the package installer
 ;; (setq to-install
-;;       '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode projectile helm-projectile web-mode zenburn-theme which-key helm-swoop))
+;;       '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode projectile helm-projectile web-mode zenburn-theme which-key helm-swoop ))
 
 ;; (mapc 'install-if-needed to-install)
 
 (desktop-save-mode 1)
+
+;; -------------------- Macros --------------------
+
+(defmacro after (mode &rest body)
+  `(eval-after-load ,mode
+     '(progn ,@body)))
+
+;; -------------------- Initializations --------------------
 
 (require 'xcscope)
 (require 'helm-cscope)
@@ -232,6 +243,12 @@
 ;; Optional face for line numbers
 ;; Face name is `helm-swoop-line-number-face`
 (setq helm-swoop-use-line-number-face t)
+
+;; ------------------ ropemacs ------------------
+(setq ropemacs-enable-shortcuts nil) (setq ropemacs-local-prefix "C-c C-p")
+(require 'pymacs)
+(pymacs-load "ropemacs" "rope-")
+
 
 (provide '.emacs)
 ;;; .emacs ends here
