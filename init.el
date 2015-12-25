@@ -17,7 +17,7 @@
 
 ;; ;; make more packages available with the package installer
 ;; (setq to-install
-;;       '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode projectile helm-projectile web-mode zenburn-theme which-key helm-swoop ))
+;;       '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode projectile helm-projectile web-mode zenburn-theme which-key helm-swoop neotree))
 
 ;; (mapc 'install-if-needed to-install)
 
@@ -248,6 +248,9 @@
 (setq ropemacs-enable-shortcuts nil) (setq ropemacs-local-prefix "C-c C-p")
 (require 'pymacs)
 (pymacs-load "ropemacs" "rope-")
+
+;; ------------------ neotree ------------------
+(require 'neotree)
 
 
 (provide '.emacs)
