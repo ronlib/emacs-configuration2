@@ -89,6 +89,9 @@
 
 (ido-mode t)
 
+;; -------------------- javascript settings --------------------
+(add-hook 'javascript-mode-hook 'yas-minor-mode)
+
 ;; -------------------- extra nice things --------------------
 ;; use shift to move around windows
 (windmove-default-keybindings 'shift)
