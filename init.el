@@ -43,11 +43,20 @@
 (global-set-key [f7] 'find-file-in-repository)
 
 ; auto-complete mode extra settings
+(require 'auto-complete-config)
 (setq
  ac-auto-start 2
  ac-override-local-map nil
  ac-use-menu-map t
  ac-candidate-limit 20)
+
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
+;;; set the trigger key so that it can work together with yasnippet on tab key,
+;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
+;;; activate, otherwise, auto-complete will
+(ac-set-trigger-key "TAB")
+(ac-set-trigger-key "<tab>")
 
 ;; ;; Python mode settings
 (require 'python-mode)
@@ -97,21 +106,7 @@
 (require 'magit)
 (global-set-key "\C-xg" 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
-
-(require 'auto-complete)
-(require 'autopair)
-(require 'yasnippet)
-(require 'flycheck)
-(global-flycheck-mode t)
-
 (global-set-key [f7] 'find-file-in-repository)
-
-; auto-complete mode extra settings
-(setq
- ac-auto-start 2
- ac-override-local-map nil
- ac-use-menu-map t
- ac-candidate-limit 20)
 
 ;; -------------------- helm --------------------
 (require 'helm)
