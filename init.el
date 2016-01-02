@@ -156,6 +156,7 @@
 (load-theme 'zenburn t)
 (setq-default tab-width 2)
 (scroll-bar-mode -1)
+(tool-bar-mode -1)
 
 (require 'which-key)
 (setq which-key-use-C-h-for-paging t
