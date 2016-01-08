@@ -6,8 +6,8 @@
 (let ((default-directory  "~/.emacs.d/elisp/"))
   (normal-top-level-add-subdirs-to-load-path))
 
-;; (add-to-list 'package-archives
-;; 	     '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.milkbox.net/packages/"))
 
 ;; (package-refresh-contents)
 
@@ -17,7 +17,7 @@
 
 ;; ;; make more packages available with the package installer
 ;; (setq to-install
-;;       '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode projectile helm-projectile web-mode zenburn-theme which-key helm-swoop neotree))
+;;       '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode projectile helm-projectile web-mode zenburn-theme which-key helm-swoop neotree js2-mode))
 
 ;; (mapc 'install-if-needed to-install)
 
@@ -31,11 +31,10 @@
 
 ;; -------------------- Initializations --------------------
 
-(require 'xcscope)
 (require 'helm-cscope)
+(require 'yasnippet)
 (require 'auto-complete)
 (require 'autopair)
-(require 'yasnippet)
 (require 'flycheck)
 (require 'pony-mode)
 (global-flycheck-mode t)
@@ -91,6 +90,9 @@
 
 ;; -------------------- javascript settings --------------------
 (add-hook 'javascript-mode-hook 'yas-minor-mode)
+(add-hook 'js-mode-hook 'js2-minor-mode)
+(add-hook 'js2-mode-hook 'ac-js2-mode)
+(setq js2-highlight-level 3)
 
 ;; -------------------- extra nice things --------------------
 ;; use shift to move around windows
