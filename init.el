@@ -11,16 +11,15 @@
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/"))
 
+(defun install-if-needed (package)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+;; make more packages available with the package installer
+(setq to-install
+      '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode projectile helm-projectile web-mode zenburn-theme which-key helm-swoop neotree js2-mode highlight-symbol))
+
 ;; (package-refresh-contents)
-
-;; (defun install-if-needed (package)
-;;   (unless (package-installed-p package)
-;;     (package-install package)))
-
-;; ;; make more packages available with the package installer
-;; (setq to-install
-;;       '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode projectile helm-projectile web-mode zenburn-theme which-key helm-swoop neotree js2-mode))
-
 ;; (mapc 'install-if-needed to-install)
 
 (desktop-save-mode 1)
@@ -65,6 +64,7 @@
 (setq py-electric-colon-active t)
 (add-hook 'python-mode-hook 'autopair-mode)
 (add-hook 'python-mode-hook 'yas-minor-mode)
+(add-hook 'python-mode-hook 'highlight-symbol-mode)
 
 ;; ;; Jedi settings
 (require 'jedi)
