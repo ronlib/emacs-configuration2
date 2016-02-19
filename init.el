@@ -17,7 +17,7 @@
 
 ;; make more packages available with the package installer
 (setq to-install
-      '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode projectile helm-projectile web-mode zenburn-theme which-key helm-swoop neotree js2-mode highlight-symbol))
+      '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode projectile helm-projectile web-mode zenburn-theme which-key helm-swoop neotree js2-mode highlight-symbol smartparens))
 
 ;; (package-refresh-contents)
 ;; (mapc 'install-if-needed to-install)
@@ -58,13 +58,19 @@
 (ac-set-trigger-key "TAB")
 (ac-set-trigger-key "<tab>")
 
-;; ;; Python mode settings
+;; ------------------ smartparens ------------------
+(require 'smartparens)
+(require 'smartparens-config)
+
+;; ------------------ Python ------------------
+
 (require 'python-mode)
 (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 (setq py-electric-colon-active t)
 (add-hook 'python-mode-hook 'autopair-mode)
 (add-hook 'python-mode-hook 'yas-minor-mode)
 (add-hook 'python-mode-hook 'highlight-symbol-mode)
+(add-hook 'python-mode-hook 'smartparens-strict-mode)
 
 ;; ;; Jedi settings
 (require 'jedi)
