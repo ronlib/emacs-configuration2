@@ -59,9 +59,9 @@
 (ac-set-trigger-key "<tab>")
 
 ;; ------------------ smartparens ------------------
-(require 'smartparens)
-(require 'smartparens-config)
-;; (smartparens-global-mode t)
+;; (require 'smartparens)
+;; (require 'smartparens-config)
+;; (smartparens-global-mode nil)
 
 ;; ------------------ Python ------------------
 
