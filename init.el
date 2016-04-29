@@ -237,6 +237,8 @@
 ;; ------------------ neotree ------------------
 (require 'neotree)
 
+(setq dired-listing-switches "-aBhl --group-directories-first")
+
 
 (provide '.emacs)
 ;;; .emacs ends here
