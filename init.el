@@ -5,8 +5,8 @@
 ;;; code:
 (package-initialize)
 
-(let ((default-directory  "~/.emacs.d/elisp/"))
-  (normal-top-level-add-subdirs-to-load-path))
+;; (let ((default-directory  "~/git/emacs-configuration2/elisp/"))
+;;   (normal-top-level-add-subdirs-to-load-path))
 
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/"))
@@ -32,12 +32,12 @@
 
 ;; -------------------- Initializations --------------------
 
-(require 'helm-cscope)
-(require 'yasnippet)
+;; (require 'helm-cscope)
+;; (require 'yasnippet)
 (require 'auto-complete)
 (require 'autopair)
 (require 'flycheck)
-(require 'pony-mode)
+;; (require 'pony-mode)
 (global-flycheck-mode t)
 
 (global-set-key [f7] 'find-file-in-repository)
@@ -146,28 +146,29 @@
       helm-ff-file-name-history-use-recentf t)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x f") 'helm-projectile-find-file-in-known-projects)
+(global-set-key (kbd "M-x") 'helm-M-x)
 
 (helm-mode 1)
 
-(projectile-global-mode)
-(setq projectile-enable-caching t)
+;; (projectile-global-mode)
+;; (setq projectile-enable-caching t)
 
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-(setq web-mode-enable-current-element-highlight t)
-(setq web-mode-enable-current-column-highlight t)
+;; (require 'web-mode)
+;; (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+;; (setq web-mode-enable-current-element-highlight t)
+;; (setq web-mode-enable-current-column-highlight t)
 
-(defun my-web-mode-hook ()
-  "Hooks for Web mode."
-  (setq web-mode-markup-indent-offset 2)
-)
-(add-hook 'web-mode-hook 'my-web-mode-hook)
+;; (defun my-web-mode-hook ()
+;;   "Hooks for Web mode."
+;;   (setq web-mode-markup-indent-offset 2)
+;; )
+;; (add-hook 'web-mode-hook 'my-web-mode-hook)
 
 ;; -------------------- look and feel --------------------
 
@@ -176,6 +177,7 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
+(set-face-attribute 'default nil :font "DejaVu Sans Mono-5")
 
 (require 'which-key)
 (setq which-key-use-C-h-for-paging t
