@@ -177,7 +177,7 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
-(set-face-attribute 'default nil :font "DejaVu Sans Mono-5")
+(set-face-attribute 'default nil :font "DejaVu Sans Mono-12")
 
 (require 'which-key)
 (setq which-key-use-C-h-for-paging t
