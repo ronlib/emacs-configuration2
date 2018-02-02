@@ -71,7 +71,6 @@
 (add-hook 'python-mode-hook 'autopair-mode)
 (add-hook 'python-mode-hook 'yas-minor-mode)
 (add-hook 'python-mode-hook 'highlight-symbol-mode)
-(add-hook 'python-mode-hook 'smartparens-strict-mode)
 
 ;; ;; Jedi settings
 (require 'jedi)
@@ -115,6 +114,8 @@
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
+(define-key key-translation-map (kbd "M-ת") (kbd "M-<"))
+(define-key key-translation-map (kbd "M-ץ") (kbd "M->"))
 
 ;; -------------------- magit --------------------
 (require 'magit)
@@ -232,9 +233,9 @@
 (setq helm-swoop-use-line-number-face t)
 
 ;; ------------------ ropemacs ------------------
-(setq ropemacs-enable-shortcuts nil) (setq ropemacs-local-prefix "C-c C-p")
-(require 'pymacs)
-(pymacs-load "ropemacs" "rope-")
+;; (setq ropemacs-enable-shortcuts nil) (setq ropemacs-local-prefix "C-c C-p")
+;; (require 'pymacs)
+;; (pymacs-load "ropemacs" "rope-")
 
 ;; ------------------ neotree ------------------
 (require 'neotree)
