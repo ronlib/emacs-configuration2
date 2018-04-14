@@ -38,7 +38,7 @@
 (require 'autopair)
 (require 'flycheck)
 ;; (require 'pony-mode)
-(global-flycheck-mode t)
+(global-flycheck-mode)
 
 (global-set-key [f7] 'find-file-in-repository)
 
@@ -58,6 +58,16 @@
 (ac-set-trigger-key "TAB")
 (ac-set-trigger-key "<tab>")
 
+;; -------------------- rtags --------------------
+(cmake-ide-setup)
+(require 'rtags)
+(require 'helm-rtags)
+(setq rtags-display-result-backend 'helm)
+
+;; ------------------ cmake-ide ------------------
+
+
+
 ;; ------------------ smartparens ------------------
 ;; (require 'smartparens)
 ;; (require 'smartparens-config)
@@ -71,6 +81,8 @@
 (add-hook 'python-mode-hook 'autopair-mode)
 (add-hook 'python-mode-hook 'yas-minor-mode)
 (add-hook 'python-mode-hook 'highlight-symbol-mode)
+(add-hook 'python-mode-hook 'auto-complete-mode)
+
 
 ;; ;; Jedi settings
 (require 'jedi)
@@ -89,18 +101,17 @@
 	    (jedi:ac-setup)
             (local-set-key "\C-cd" 'jedi:show-doc)
             (local-set-key (kbd "M-SPC") 'jedi:complete)
-            (local-set-key (kbd "M-.") 'jedi:goto-definition)))
+            (set-key (kbd "M-.") 'jedi:goto-definition)))
 
-
-(add-hook 'python-mode-hook 'auto-complete-mode)
-
-(ido-mode t)
+;; No need for ido togather with helm
+;; (require 'ido)
+;; (ido-mode t)
 
 ;; -------------------- javascript settings --------------------
-(add-hook 'javascript-mode-hook 'yas-minor-mode)
-(add-hook 'js-mode-hook 'js2-minor-mode)
-(add-hook 'js2-mode-hook 'ac-js2-mode)
-(setq js2-highlight-level 3)
+;; (add-hook 'javascript-mode-hook 'yas-minor-mode)
+;; (add-hook 'js-mode-hook 'js2-minor-mode)
+;; (add-hook 'js2-mode-hook 'ac-js2-mode)
+;; (setq js2-highlight-level 3)
 
 ;; -------------------- extra nice things --------------------
 ;; use shift to move around windows
@@ -121,7 +132,7 @@
 (require 'magit)
 (global-set-key "\C-xg" 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
-(global-set-key [f7] 'find-file-in-repository)
+;; (global-set-key [f7] 'find-file-in-repository)
 
 ;; -------------------- helm --------------------
 (require 'helm)
@@ -132,13 +143,14 @@
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
 (global-unset-key (kbd "C-x c"))
 (global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
 (define-key helm-map (kbd "M-z")  'helm-select-action) ; list actions using C-z
 
-(when (executable-find "curl")
-  (setq helm-google-suggest-use-curl-p t))
+;; (when (executable-find "curl")
+;;   (setq helm-google-suggest-use-curl-p t))
 
 (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
       helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
@@ -171,6 +183,7 @@
 ;; )
 ;; (add-hook 'web-mode-hook 'my-web-mode-hook)
 
+
 ;; -------------------- look and feel --------------------
 
 (load-theme 'zenburn t)
@@ -178,13 +191,14 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
-(set-face-attribute 'default nil :font "DejaVu Sans Mono-12")
+;; (set-face-attribute 'default nil :font "DejaVu Sans Mono-12")
+;; (set-face-attribute 'default nil :font "Monospace Regular-12")
 
-(require 'which-key)
-(setq which-key-use-C-h-for-paging t
-      which-key-prevent-C-h-from-cycling t)
-(which-key-setup-side-window-right)
-(which-key-mode t)
+;; (require 'which-key)
+;; (setq which-key-use-C-h-for-paging t
+;;       which-key-prevent-C-h-from-cycling t)
+;; (which-key-setup-side-window-right)
+;; (which-key-mode t)
 
 ;; ------------------ helm-swoop ------------------
 
@@ -238,7 +252,7 @@
 ;; (pymacs-load "ropemacs" "rope-")
 
 ;; ------------------ neotree ------------------
-(require 'neotree)
+;; (require 'neotree)
 
 (setq dired-listing-switches "-aBhl --group-directories-first")
 

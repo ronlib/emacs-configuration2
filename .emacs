@@ -13,7 +13,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
 	 (quote
-		(cython-mode realgud helm-ag ggtags cmake-mode zenburn-theme yasnippet which-key web-mode smartparens python-mode pony-mode neotree magit js2-mode jedi highlight-symbol helm-swoop helm-projectile helm-cscope flycheck find-file-in-repository autopair))))
+		(cmake-ide ag lua-mode company-rtags flycheck-rtags helm-rtags rtags cython-mode realgud helm-ag ggtags cmake-mode zenburn-theme yasnippet which-key web-mode smartparens python-mode pony-mode neotree magit js2-mode jedi highlight-symbol helm-swoop helm-projectile helm-cscope flycheck find-file-in-repository autopair))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
