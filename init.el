@@ -23,6 +23,7 @@
 ;; (mapc 'install-if-needed to-install)
 
 (desktop-save-mode 1)
+(setq-default indent-tabs-mode nil)
 
 ;; -------------------- Macros --------------------
 
@@ -191,6 +192,7 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
+(global-linum-mode t)
 ;; (set-face-attribute 'default nil :font "DejaVu Sans Mono-12")
 ;; (set-face-attribute 'default nil :font "Monospace Regular-12")
 
