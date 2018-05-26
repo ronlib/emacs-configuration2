@@ -39,7 +39,7 @@
 
 ;; (require 'helm-cscope)
 ;; (require 'yasnippet)
-;; (require 'auto-complete)
+(require 'auto-complete)
 (require 'autopair)
 (require 'flycheck)
 ;; (require 'pony-mode)
@@ -57,12 +57,12 @@
 
 ;; -------------------- auto-complete --------------------
 
-;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-;; (ac-config-default)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
 ;;; set the trigger key so that it can work together with yasnippet on tab key,
 ;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
 ;;; activate, otherwise, auto-complete will
-;; (ac-set-trigger-key "TAB")
+(ac-set-trigger-key "TAB")
 ;; (ac-set-trigger-key "<tab>")
 
 ;; -------------------- company --------------------
@@ -73,11 +73,12 @@
 ;; -------------------- rtags --------------------
 (cmake-ide-setup)
 (require 'rtags)
-;; (require 'ac-rtags)
-(require 'helm-rtags)
+(require 'ac-rtags)
+(setq rtags-completion-enabled t)
 (require 'company-rtags)
-(setq rtags-display-result-backend 'helm)
 (push 'company-rtags company-backends)
+(require 'helm-rtags)
+(setq rtags-display-result-backend 'helm)
 
 ;; ------------------ cmake-ide ------------------
 
