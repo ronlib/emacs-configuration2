@@ -9,7 +9,9 @@
 ;;   (normal-top-level-add-subdirs-to-load-path))
 
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/"))
+             '("melpa" . "https://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives
+             '("gnu" . "https://elpa.gnu.org/packages/"))
 
 (defun install-if-needed (package)
   (unless (package-installed-p package)
@@ -17,7 +19,9 @@
 
 ;; make more packages available with the package installer
 (setq to-install
-      '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode projectile helm-projectile web-mode zenburn-theme which-key helm-swoop neotree js2-mode highlight-symbol smartparens))
+      '(python-mode magit yasnippet autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode projectile helm-projectile web-mode zenburn-theme which-key helm-swoop neotree js2-mode highlight-symbol smartparens company company-rtags))
+
+;; No longer used  jedi auto-complete
 
 ;; (package-refresh-contents)
 ;; (mapc 'install-if-needed to-install)
@@ -35,7 +39,7 @@
 
 ;; (require 'helm-cscope)
 ;; (require 'yasnippet)
-(require 'auto-complete)
+;; (require 'auto-complete)
 (require 'autopair)
 (require 'flycheck)
 ;; (require 'pony-mode)
@@ -44,26 +48,36 @@
 (global-set-key [f7] 'find-file-in-repository)
 
 ; auto-complete mode extra settings
-(require 'auto-complete-config)
-(setq
- ac-auto-start 2
- ac-override-local-map nil
- ac-use-menu-map t
- ac-candidate-limit 20)
+;; (require 'auto-complete-config)
+;; (setq
+;;  ac-auto-start 2
+;;  ac-override-local-map nil
+;;  ac-use-menu-map t
+;;  ac-candidate-limit 20)
 
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-(ac-config-default)
+;; -------------------- auto-complete --------------------
+
+;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+;; (ac-config-default)
 ;;; set the trigger key so that it can work together with yasnippet on tab key,
 ;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
 ;;; activate, otherwise, auto-complete will
-(ac-set-trigger-key "TAB")
-(ac-set-trigger-key "<tab>")
+;; (ac-set-trigger-key "TAB")
+;; (ac-set-trigger-key "<tab>")
+
+;; -------------------- company --------------------
+(require 'company)
+(add-hook 'c-mode-hook 'company-mode)
+(add-hook 'c++-mode-hook 'company-mode)
 
 ;; -------------------- rtags --------------------
 (cmake-ide-setup)
 (require 'rtags)
+;; (require 'ac-rtags)
 (require 'helm-rtags)
+(require 'company-rtags)
 (setq rtags-display-result-backend 'helm)
+(push 'company-rtags company-backends)
 
 ;; ------------------ cmake-ide ------------------
 
@@ -82,11 +96,11 @@
 (add-hook 'python-mode-hook 'autopair-mode)
 (add-hook 'python-mode-hook 'yas-minor-mode)
 (add-hook 'python-mode-hook 'highlight-symbol-mode)
-(add-hook 'python-mode-hook 'auto-complete-mode)
+;; (add-hook 'python-mode-hook 'auto-complete-mode)
 
 
 ;; ;; Jedi settings
-(require 'jedi)
+;; (require 'jedi)
 ;; It's also required to run "pip install --user jedi" and "pip
 ;; install --user epc" to get the Python side of the library work
 ;; correctly.
