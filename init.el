@@ -13,18 +13,24 @@
 (add-to-list 'package-archives
              '("gnu" . "https://elpa.gnu.org/packages/"))
 
-(defun install-if-needed (package)
-  (unless (package-installed-p package)
-    (package-install package)))
+(require 'use-package)
+
+;; (defun install-if-needed (package)
+;;   (unless (package-installed-p package)
+;;     (package-install package)))
 
 ;; make more packages available with the package installer
-(setq to-install
-      '(python-mode magit yasnippet autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode projectile helm-projectile web-mode zenburn-theme which-key helm-swoop neotree js2-mode highlight-symbol smartparens company company-rtags))
+;; (setq to-install
+;;       '(python-mode magit yasnippet autopair find-file-in-repository flycheck helm xcscope helm-cscope pony-mode projectile helm-projectile web-mode zenburn-theme which-key helm-swoop neotree js2-mode highlight-symbol smartparens company company-rtags use-package))
 
-;; No longer used  jedi auto-complete
-
-;; (package-refresh-contents)
 ;; (mapc 'install-if-needed to-install)
+
+(use-package benchmark-init
+  :ensure t
+  :config
+  ;; To disable collection of benchmark data after init is done.
+  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
 
 (desktop-save-mode 1)
 (setq-default indent-tabs-mode nil)
@@ -118,6 +124,13 @@
             (local-set-key "\C-cd" 'jedi:show-doc)
             (local-set-key (kbd "M-SPC") 'jedi:complete)
             (set-key (kbd "M-.") 'jedi:goto-definition)))
+
+(add-hook 'python-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode f)
+            (setq tab-width 2)
+            (setq python-indent 2)))
+
 
 ;; No need for ido togather with helm
 ;; (require 'ido)
