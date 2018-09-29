@@ -286,6 +286,15 @@
 
 (setq dired-listing-switches "-aBhl --group-directories-first")
 
+(defun kill-buffer-filename ()
+    "Copy the full path of the current buffer."
+    (interactive)
+    (kill-new (buffer-file-name (window-buffer (minibuffer-selected-window)))))
+
+
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+
 
 (provide '.emacs)
 ;;; .emacs ends here
