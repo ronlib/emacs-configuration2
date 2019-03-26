@@ -9,7 +9,7 @@
 ;;   (normal-top-level-add-subdirs-to-load-path))
 
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.milkbox.net/packages/"))
+             '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives
              '("gnu" . "https://elpa.gnu.org/packages/"))
 
@@ -47,9 +47,9 @@
 ;; (require 'yasnippet)
 (require 'auto-complete)
 (require 'autopair)
-(require 'flycheck)
+;; (require 'flycheck)
 ;; (require 'pony-mode)
-(global-flycheck-mode)
+;; (global-flycheck-mode)
 
 (global-set-key [f7] 'find-file-in-repository)
 
@@ -78,6 +78,9 @@
 
 ;; -------------------- rtags --------------------
 (cmake-ide-setup)
+(setq rtags-path "/home/ron/git/rtags/bin")
+(setq rtags-rdm-includes "/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.0/include")
+
 (require 'rtags)
 (require 'ac-rtags)
 (setq rtags-completion-enabled t)
@@ -86,10 +89,6 @@
 (require 'helm-rtags)
 (setq rtags-display-result-backend 'helm)
 
-;; ------------------ cmake-ide ------------------
-
-
-
 ;; ------------------ smartparens ------------------
 ;; (require 'smartparens)
 ;; (require 'smartparens-config)
@@ -97,44 +96,28 @@
 
 ;; ------------------ Python ------------------
 
-(require 'python-mode)
-(add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
-(setq py-electric-colon-active t)
-(add-hook 'python-mode-hook 'autopair-mode)
-(add-hook 'python-mode-hook 'yas-minor-mode)
-(add-hook 'python-mode-hook 'highlight-symbol-mode)
+;; (require 'python-mode)
+;; (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
+;; (setq py-electric-colon-active t)
+;; (add-hook 'python-mode-hook 'autopair-mode)
+;; (add-hook 'python-mode-hook 'yas-minor-mode)
+;; (add-hook 'python-mode-hook 'highlight-symbol-mode)
 ;; (add-hook 'python-mode-hook 'auto-complete-mode)
 
+;; (add-hook 'python-mode-hook
+;; 	  (lambda ()
+;; 	    (jedi:setup)
+;; 	    (jedi:ac-setup)
+;;             (local-set-key "\C-cd" 'jedi:show-doc)
+;;             (local-set-key (kbd "M-SPC") 'jedi:complete)
+;;             (set-key (kbd "M-.") 'jedi:goto-definition)))
 
-;; ;; Jedi settings
-;; (require 'jedi)
-;; It's also required to run "pip install --user jedi" and "pip
-;; install --user epc" to get the Python side of the library work
-;; correctly.
-;; With the same interpreter you're using.
+;; (add-hook 'python-mode-hook
+;;           (lambda ()
+;;             (setq indent-tabs-mode f)
+;;             (setq tab-width 2)
+;;             (setq python-indent 2)))
 
-;; if you need to change your python intepreter, if you want to change it
-;; (setq jedi:server-command
-;;       '("python2" "/home/andrea/.emacs.d/elpa/jedi-0.1.2/jediepcserver.py"))
-
-(add-hook 'python-mode-hook
-	  (lambda ()
-	    (jedi:setup)
-	    (jedi:ac-setup)
-            (local-set-key "\C-cd" 'jedi:show-doc)
-            (local-set-key (kbd "M-SPC") 'jedi:complete)
-            (set-key (kbd "M-.") 'jedi:goto-definition)))
-
-(add-hook 'python-mode-hook
-          (lambda ()
-            (setq indent-tabs-mode f)
-            (setq tab-width 2)
-            (setq python-indent 2)))
-
-
-;; No need for ido togather with helm
-;; (require 'ido)
-;; (ido-mode t)
 
 ;; -------------------- javascript settings --------------------
 ;; (add-hook 'javascript-mode-hook 'yas-minor-mode)
@@ -291,6 +274,18 @@
     (interactive)
     (kill-new (buffer-file-name (window-buffer (minibuffer-selected-window)))))
 
+(autoload 'rust-mode "rust-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+;; (setq racer-rust-src-path "/home/ron/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'racer-mode-hook #'company-mode)
+(after 'rust-mode (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common))
+(setq company-tooltip-align-annotations t)
+(add-hook 'rust-mode-hook 'flycheck-mode)
+
+(with-eval-after-load 'rust-mode
+  (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
 
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
