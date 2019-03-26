@@ -31,9 +31,10 @@
   ;; To disable collection of benchmark data after init is done.
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
-
 (desktop-save-mode 1)
 (setq-default indent-tabs-mode nil)
+
+(setq backup-directory-alist `(("." . "~/.emacs-saves")))
 
 ;; -------------------- Macros --------------------
 
@@ -283,6 +284,14 @@
 (after 'rust-mode (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common))
 (setq company-tooltip-align-annotations t)
 (add-hook 'rust-mode-hook 'flycheck-mode)
+
+(add-hook 'rust-mode-hook
+          (lambda ()
+            (local-set-key
+             (kbd "C-M-;")
+             (lambda () (interactive)
+               (let ((comment-start "///"))
+                 (call-interactively 'comment-region))))))
 
 (with-eval-after-load 'rust-mode
   (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
